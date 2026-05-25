@@ -123,7 +123,8 @@ char *print_cmd(char **cmd) {
         if (cmd[j] == NULL)
             break;
 
-        ret = strcat(ret, " ");
+        if (j != 0)
+            ret = strcat(ret, " ");
         ret = strcat(ret, cmd[j]);
     }
 
