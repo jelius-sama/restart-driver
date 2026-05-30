@@ -112,6 +112,11 @@ char *print_cmd(char **cmd) {
         i++;
     }
 
+    if (len == 0) {
+        fprintf(stderr, "print_cmd called with empty command\n");
+        exit(1);
+    }
+
     char *ret = malloc(len);
     if (ret == NULL) {
         fprintf(stderr, "Buy more RAM!\n");
@@ -201,6 +206,9 @@ int main(int argc, char **argv) {
     }
 
     if (strcmp(driver_name, "wifi") == 0) {
+        char *s0[] = {"rfkill", "block", "wifi", NULL};
+        run_cmd(s0);
+
         char *s1[] = {"systemctl", "stop", "iwd", NULL};
         run_cmd(s1);
 
@@ -225,6 +233,9 @@ int main(int argc, char **argv) {
             exit(1);
         }
         run_cmd(s6);
+
+        char *s7[] = {"rfkill", "unblock", "wifi", NULL};
+        run_cmd(s7);
 
         return 0;
     }
