@@ -237,6 +237,9 @@ int main(int argc, char **argv) {
         char *s7[] = {"rfkill", "unblock", "wifi", NULL};
         run_cmd(s7);
 
+        char *s8[] = {"systemctl", "restart", "iwd", NULL};
+        run_cmd(s8);
+
         return 0;
     }
 
