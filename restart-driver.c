@@ -212,7 +212,7 @@ int main(int argc, char **argv) {
         char *s1[] = {"systemctl", "stop", "iwd", NULL};
         run_cmd(s1);
 
-        char *s2[] = {"ip", "link", "set", "wlp1s0f0", "down", NULL};
+        char *s2[] = {"ip", "link", "set", "wld0", "down", NULL};
         run_cmd(s2);
 
         char *s3[] = {"modprobe", "-r",       "brcmfmac_wcc",
@@ -225,11 +225,10 @@ int main(int argc, char **argv) {
         char *s5[] = {"systemctl", "start", "iwd", NULL};
         run_cmd(s5);
 
-        char *s6[] = {"ip", "link", "set", "wlp1s0f0", "up", NULL};
-        if (!wait_for_iface("wlp1s0f0", 10)) {
-            fprintf(
-                stderr,
-                "[ERROR] interface wlp1s0f0 did not appear within timeout\n");
+        char *s6[] = {"ip", "link", "set", "wld0", "up", NULL};
+        if (!wait_for_iface("wld0", 10)) {
+            fprintf(stderr,
+                    "[ERROR] interface wld0 did not appear within timeout\n");
             exit(1);
         }
         run_cmd(s6);
